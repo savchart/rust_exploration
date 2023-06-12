@@ -4,6 +4,7 @@ trait WalkableStatic {
 }
 
 struct CatStatic;
+
 struct DogStatic;
 
 impl WalkableStatic for CatStatic {
@@ -36,6 +37,7 @@ trait WalkableDynamic {
 }
 
 struct CatDynamic;
+
 struct DogDynamic;
 
 impl WalkableDynamic for CatDynamic {
@@ -61,8 +63,8 @@ pub fn dynamic_dispatch() {
     generic_dynamic(&cat);
     generic_dynamic(&dog);
 }
-// enum matching
 
+// enum matching
 enum Animal {
     Cat,
     Dog,
@@ -83,4 +85,26 @@ pub fn enum_dispatch() {
 
     cat.walk();
     dog.walk();
+}
+
+
+// tests
+#[cfg(test)]
+mod polymorphism_tests {
+    use super::*;
+
+    #[test]
+    fn test_static_dispatch() {
+        static_dispatch();
+    }
+
+    #[test]
+    fn test_dynamic_dispatch() {
+        dynamic_dispatch();
+    }
+
+    #[test]
+    fn test_enum_dispatch() {
+        enum_dispatch();
+    }
 }
